@@ -1,0 +1,15 @@
+A. An electronic computer is one of the greatest achievements of the man. Today computers play chess, compose music, translate from and into foreign languages, help to solve many important problems in science, engineering, business. They save a lot of time and energy, operate at great speed, store large quantities of information, carry out long and complex operations. There are some categories of computer application: business, medicine, engineering, education, home.
+
+B. The business segment is one of the largest. Computers process a large volume of datan in a short period of time. No man can do 500,000 sums per second, but a modern computer can. Databases, spreadsheets, and word processors help business to run more efficiently, make administrative work easier.
+
+C. In science and engineering, computers do calculations, draw diagrams, process the results of experiments, keep records, help with other kinds of chores.
+
+D. In medicine databases, diagnostic devices, monitoring systems serve doctors in their work, in medical and laboratory research
+
+E. The ability to work with a computer is a necessary basic skill today. In primary and secondary schools pupils learn how to operate a computer. Computer-assisted instruction helps students to study at their own pace more intensively and helps teachers to do their work more creative. They can be used to teach courses such as computer-aided-design, language learning, programming, mathematics, etc.
+
+F. Personal computers are also used for administrative purposes, for example, schools use databases and word processors to keep records of students, teachers and materials.
+
+G. At home most often people use personal computers to play video games or for education, to teach children. Computers serve as word processors, electronic message centres and personal finance devices.
+
+H. There are some social problems of computer technology. The most important is the elimination of jobs by computers. Another problem is the invasion of privacy, the security of all confidential data banks. Still another is a technophobia, a fear of machines in general and of computers in particular. Very often the technophobia is the result of the elimination of jobs or the invasion of privacy. Scientists study all these problems to find a way out, because computer technology has a great potential for more progressive transformation of our society.
