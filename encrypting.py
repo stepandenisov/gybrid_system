@@ -19,7 +19,7 @@ class Encryptor:
         self.__key = private_key.decrypt(symmetric_key,
                                          pad.OAEP(mgf=pad.MGF1(algorithm=hashes.SHA256()), algorithm=hashes.SHA256(),
                                                   label=None))
-        self.__iv = os.urandom(8)
+        self.__iv = os.urandom(16)
 
     @property
     def iv(self):
@@ -28,13 +28,11 @@ class Encryptor:
     def encrypt(self):
         with open(self.__ways['initial_file'], 'rb') as f:
             data = f.read()
-        padder = padding.ANSIX923(8).padder()
+        padder = padding.ANSIX923(16).padder()
         padded_text = padder.update(data) + padder.finalize()
-        cipher = Cipher(algorithms.Blowfish(self.__key), modes.CBC(self.__iv))
+        cipher = Cipher(algorithms.AES(self.__key), modes.CBC(self.__iv))
         encryptor = cipher.encryptor()
         encrypted_data = encryptor.update(padded_text)
-        return [self.iv, encrypted_data]
-
-    def write_encrypt_data(self):
+        data_info = [self.iv, encrypted_data]
         with open(self.__ways['encrypted_file'], 'wb') as f:
-            pickle.dump(self.encrypt(), f)
+            pickle.dump(data_info, f)

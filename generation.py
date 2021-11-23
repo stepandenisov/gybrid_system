@@ -12,7 +12,7 @@ class Generator:
         self.__ways = settings
         self.__iv = iv
         self.__symmetric_key = os.urandom(int((iv / 8)))
-        self.__rsa_keys = rsa.generate_private_key(public_exponent=65537, key_size=4096,)
+        self.__rsa_keys = rsa.generate_private_key(public_exponent=65537, key_size=2048,)
         self.__result_key = self.__rsa_keys.public_key().encrypt(self.__symmetric_key,
                                                                  padding.OAEP(
                                                                      mgf=padding.MGF1(algorithm=hashes.SHA256()),

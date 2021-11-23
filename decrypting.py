@@ -24,13 +24,10 @@ class Decryptor:
         self.__text_to_decrypt = data[1]
 
     def decrypt(self):
-        cipher = Cipher(algorithms.Blowfish(self.__key), modes.CBC(self.__iv))
+        cipher = Cipher(algorithms.AES(self.__key), modes.CBC(self.__iv))
         decrypt = cipher.decryptor()
         dc_data = decrypt.update(self.__text_to_decrypt) + decrypt.finalize()
-        unp = padding.ANSIX923(8).unpadder()
-        return unp.update(dc_data)
-
-    def write_decrypt_data(self):
-        with open(self.__ways['decrypted_file'], 'wb') as f:
-            pickle.dump(self.decrypt(), f)
-    
+        unp = padding.ANSIX923(16).unpadder()
+        decrypt_data = unp.update(dc_data)
+        with open(self.__ways['decrypted_file'], mode="wb") as f:
+            f.write(decrypt_data)
