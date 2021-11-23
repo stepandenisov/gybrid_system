@@ -8,7 +8,28 @@ from cryptography.hazmat.primitives import hashes
 
 
 class Decryptor:
-    def __init__(self, settings):
+    """
+    Объект класса Decryptor репрезентует дешифратор для текста с заданным ключом.
+    """
+    def __init__(self, settings: dict):
+        """
+        Инициализирует экзмепляр класса Encryptor.
+        Parameters
+        ----------
+            settings: dict
+                словарь, который хранит пути к файлам, необходимым для работы
+                шифровщика.
+        Attributes:
+        ----------
+            self.__ways: dict
+                хранит пути к файлам, необходимым для работы шифровщика.
+            self.__key
+                хранит симметричный ключ шифрования.
+            self.__iv
+                хранит значение вектора инициализации для шифрования.
+            self.__text_to_decrypt
+                хранит текст, который необходим дешифровать.
+        """
         self.__ways = settings
         with open(self.__ways['symmetric_key'], mode='rb') as key_file:
             symmetric_key = key_file.read()
@@ -24,6 +45,10 @@ class Decryptor:
         self.__text_to_decrypt = data[1]
 
     def decrypt(self):
+        """
+        Выполняет дешифрование данных, хранимых в файле по ключу с помощью алгоритма AES с
+        последующей записью расшифрованного текста в новый файл.
+        """
         cipher = Cipher(algorithms.AES(self.__key), modes.CBC(self.__iv))
         decrypt = cipher.decryptor()
         dc_data = decrypt.update(self.__text_to_decrypt) + decrypt.finalize()

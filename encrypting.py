@@ -9,7 +9,26 @@ from cryptography.hazmat.primitives import hashes
 
 
 class Encryptor:
-    def __init__(self, settings):
+    """
+    Объект класса Encryptor репрезентует шифратор для текста с заданным ключом.
+    """
+    def __init__(self, settings: dict):
+        """
+        Инициализирует экзмепляр класса Encryptor.
+        Parameters
+        ----------
+            settings: dict
+                словарь, который хранит пути к файлам, необходимым для работы
+                шифровщика.
+        Attributes:
+        ----------
+            self.__ways: dict
+                хранит пути к файлам, необходимым для работы шифровщика.
+            self.__key
+                хранит симметричный ключ шифрования.
+            self.__iv
+                хранит значение вектора инициализации для шифрования.
+        """
         self.__ways = settings
         with open(self.__ways['symmetric_key'], mode='rb') as key_file:
             symmetric_key = key_file.read()
@@ -21,11 +40,11 @@ class Encryptor:
                                                   label=None))
         self.__iv = os.urandom(16)
 
-    @property
-    def iv(self):
-        return self.__iv
-
     def encrypt(self):
+        """
+        Выполняет шифрование данных, хранимых в файле по ключу с помощью алгоритма AES с
+        последующей записью вектора инициализации и зашифрованного текста в новый файл.
+        """
         with open(self.__ways['initial_file'], 'rb') as f:
             data = f.read()
         padder = padding.ANSIX923(16).padder()
@@ -33,6 +52,6 @@ class Encryptor:
         cipher = Cipher(algorithms.AES(self.__key), modes.CBC(self.__iv))
         encryptor = cipher.encryptor()
         encrypted_data = encryptor.update(padded_text)
-        data_info = [self.iv, encrypted_data]
+        data_info = [self.__iv, encrypted_data]
         with open(self.__ways['encrypted_file'], 'wb') as f:
             pickle.dump(data_info, f)

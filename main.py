@@ -16,10 +16,8 @@ group = parser.add_mutually_exclusive_group(required=True)
 group.add_argument('-gen', '--generation', help='Запускает режим генерации ключей', action="store_true")
 group.add_argument('-enc', '--encryption', help='Запускает режим шифрования', action="store_true")
 group.add_argument('-dec', '--decryption', help='Запускает режим дешифрования', action="store_true")
-
 parser.add_argument('-iv', '--initializing_vector', type=int, choices=[128, 192, 256],
                     help='Количество бит для генерации ключа', required=True)
-
 args = parser.parse_args()
 
 with open('settings.json', 'r') as json_file:
