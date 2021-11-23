@@ -81,7 +81,7 @@ else:
                                                 label=None))
         with open(ways['initial_file'], 'rb') as f:
             data = f.read()
-        padder = padding.ANSIX923(64).padder()
+        padder = padding.ANSIX923(8).padder()
         padded_text = padder.update(data) + padder.finalize()
         iv = os.urandom(8)
         enc_logger.info("Encrypting initial text...")
@@ -108,7 +108,7 @@ else:
         cipher = Cipher(algorithms.Blowfish(key), modes.CBC(iv))
         decrypt = cipher.decryptor()
         dc_data = decrypt.update(text_to_decrypt) + decrypt.finalize()
-        unp = padding.ANSIX923(64).unpadder()
+        unp = padding.ANSIX923(8).unpadder()
         decrypt_data = unp.update(dc_data)
         with open(ways['decrypted_file'], mode="wb") as f:
             f.write(decrypt_data)
